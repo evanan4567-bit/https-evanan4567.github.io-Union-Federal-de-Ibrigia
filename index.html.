@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Unión Federal de Ibrigia</title>
+</head>
+<body>
+  <h1>Unión Federal de Ibrigia</h1>
+  <p>El país que simboliza nuestra relación.</p>
+
+  <h2>Los tres poderes</h2>
+  <ul>
+    <li><a href="judicial.html">Poder Judicial (SOTPK)</a></li>
+    <li><a href="legislativo.html">Poder Legislativo (Leyes)</a></li>
+    <li><a href="ejecutivo.html">Poder Ejecutivo (Presidencia mensual)</a></li>
+  </ul>
+
+  <p><a href="partidos.html">Partidos</a></p>
+</body>
+</html>
