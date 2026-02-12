@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Poder Ejecutivo · Unión Federal de Ibrigia</title>
+  <link rel="stylesheet" href="assets/css/app.css">
+  <style>
+    .stack{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width: 900px){.stack{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="photo" id="photo"></div>
+  <div class="bg"></div>
+
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="seal" aria-hidden="true"></div>
+        <div>
+          <h1 class="pageTitle">Poder Ejecutivo</h1>
+          <p class="pageSub">Presidencia rotativa mensual: prioridades, agenda y decretos.</p>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a class="pill" href="index.html">Inicio</a>
+        <a class="pill" href="judicial.html">Judicial</a>
+        <a class="pill" href="legislativo.html">Legislativo</a>
+        <a class="pill" href="ejecutivo.html">Ejecutivo</a>
+        <a class="pill" href="partidos.html">Partidos</a>
+      </nav>
+    </div>
+
+    <div class="card">
+      <div class="session">
+        <span class="statusDot" aria-hidden="true"></span>
+        <span class="badge accent" id="mesTag">Mes: —</span>
+        <span class="badge" id="presiTag">Presidente/a: —</span>
+      </div>
+      <p class="muted" style="margin:10px 0 0">Esto se guarda en este navegador (local). Luego lo podemos hacer compartible.</p>
+    </div>
+
+    <div class="stack" style="margin-top:12px">
+      <section class="card">
+        <h2>Presidencia del mes</h2>
+        <div class="formRow">
+          <div>
+            <div class="muted">Mes</div>
+            <select id="mes">
+              <option value="Enero">Enero</option><option value="Febrero">Febrero</option><option value="Marzo">Marzo</option>
+              <option value="Abril">Abril</option><option value="Mayo">Mayo</option><option value="Junio">Junio</option>
+              <option value="Julio">Julio</option><option value="Agosto">Agosto</option><option value="Septiembre">Septiembre</option>
+              <option value="Octubre">Octubre</option><option value="Noviembre">Noviembre</option><option value="Diciembre">Diciembre</option>
+            </select>
+          </div>
+          <div>
+            <div class="muted">Presidente/a</div>
+            <input id="presidente" placeholder="Ej: Iván / Briggite" />
+          </div>
+        </div>
+        <div class="ctaRow">
+          <button class="btn primary" id="guardarPresi" type="button">Guardar</button>
+          <button class="btn" id="resetPresi" type="button">Reiniciar</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Prioridades (máx 3)</h2>
+        <table class="table">
+          <thead><tr><th>Lista</th></tr></thead>
+          <tbody id="prioridadesT"></tbody>
+        </table>
+        <div class="muted">Agregar prioridad</div>
+        <input id="prioridadInput" placeholder="Ej: más comunicación en la noche" />
+        <div class="ctaRow">
+          <button class="btn primary" id="addPrioridad" type="button">Agregar</button>
+          <button class="btn" id="clearPrioridades" type="button">Limpiar</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Agenda del mes</h2>
+        <table class="table">
+          <thead><tr><th>Fecha</th><th>Actividad</th></tr></thead>
+          <tbody id="agendaT"></tbody>
+        </table>
+        <div class="formRow">
+          <div>
+            <div class="muted">Fecha</div>
+            <input id="agendaFecha" placeholder="Ej: 20/02" />
+          </div>
+          <div>
+            <div class="muted">Actividad</div>
+            <input id="agendaTexto" placeholder="Ej: cita / hablar / paseo" />
+          </div>
+        </div>
+        <div class="ctaRow">
+          <button class="btn primary" id="addAgenda" type="button">Agregar</button>
+          <button class="btn" id="clearAgenda" type="button">Limpiar</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Decretos</h2>
+        <table class="table">
+          <thead><tr><th>Últimos decretos</th></tr></thead>
+          <tbody id="decretosT"></tbody>
+        </table>
+        <div class="muted">Nuevo decreto</div>
+        <textarea id="decretoTexto" placeholder="Ej: 'Si hay molestia, se avisa con calma y se propone solución'"> </textarea>
+        <div class="ctaRow">
+          <button class="btn primary" id="addDecreto" type="button">Promulgar</button>
+          <button class="btn" id="clearDecretos" type="button">Borrar</button>
+        </div>
+      </section>
+    </div>
+
+    <div class="smallNote">Tip: si no ves cambios al instante, recarga con Ctrl+F5.</div>
+  </div>
+
+  <script src="assets/js/app-config.js"></script>
+  <script>
+    const KEY = 'ibrigia_ejecutivo_v1';
+    const state = JSON.parse(localStorage.getItem(KEY) || '{}');
+
+    const cfg = window.IBRIGIA;
+    document.getElementById('photo').style.backgroundImage = `url('${cfg.heroImage}')`;
+
+    const $ = (id) => document.getElementById(id);
+
+    function todayMonthName(){
+      return ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'][new Date().getMonth()];
+    }
+
+    function escapeHtml(s){
+      return String(s || '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;');
+    }
+
+    function save(){
+      localStorage.setItem(KEY, JSON.stringify(state));
+      render();
+    }
+
+    function render(){
+      const mes = state.mes || todayMonthName();
+      const presidente = state.presidente || '—';
+
+      $('mes').value = mes;
+      $('presidente').value = state.presidente || '';
+
+      $('mesTag').textContent = 'Mes: ' + mes;
+      $('presiTag').textContent = 'Presidente/a: ' + presidente;
+
+      const prioridades = state.prioridades || [];
+      $('prioridadesT').innerHTML = prioridades.length
+        ? prioridades.map(p => `<tr><td>${escapeHtml(p)}</td></tr>`).join('')
+        : `<tr><td class="muted">Sin prioridades aún.</td></tr>`;
+
+      const agenda = state.agenda || [];
+      $('agendaT').innerHTML = agenda.length
+        ? agenda.map(a => `<tr><td>${escapeHtml(a.fecha)}</td><td>${escapeHtml(a.texto)}</td></tr>`).join('')
+        : `<tr><td class="muted">—</td><td class="muted">Sin agenda aún.</td></tr>`;
+
+      const decretos = state.decretos || [];
+      $('decretosT').innerHTML = decretos.length
+        ? decretos.map(d => `<tr><td>${escapeHtml(d)}</td></tr>`).join('')
+        : `<tr><td class="muted">Sin decretos aún.</td></tr>`;
+    }
+
+    $('guardarPresi').onclick = () => {
+      state.mes = $('mes').value;
+      state.presidente = $('presidente').value.trim() || '—';
+      save();
+    };
+
+    $('resetPresi').onclick = () => {
+      delete state.mes; delete state.presidente;
+      save();
+    };
+
+    $('addPrioridad').onclick = () => {
+      const v = $('prioridadInput').value.trim();
+      if(!v) return;
+      state.prioridades = state.prioridades || [];
+      if(state.prioridades.length >= 3) return;
+      state.prioridades.push(v);
+      $('prioridadInput').value = '';
+      save();
+    };
+
+    $('clearPrioridades').onclick = () => { state.prioridades = []; save(); };
+
+    $('addAgenda').onclick = () => {
+      const f = $('agendaFecha').value.trim();
+      const t = $('agendaTexto').value.trim();
+      if(!f || !t) return;
+      state.agenda = state.agenda || [];
+      state.agenda.push({fecha:f, texto:t});
+      $('agendaFecha').value = '';
+      $('agendaTexto').value = '';
+      save();
+    };
+
+    $('clearAgenda').onclick = () => { state.agenda = []; save(); };
+
+    $('addDecreto').onclick = () => {
+      const d = $('decretoTexto').value.trim();
+      if(!d) return;
+      state.decretos = state.decretos || [];
+      state.decretos.unshift(d);
+      $('decretoTexto').value = '';
+      save();
+    };
+
+    $('clearDecretos').onclick = () => { state.decretos = []; save(); };
+
+    render();
+  </script>
+</body>
+</html>

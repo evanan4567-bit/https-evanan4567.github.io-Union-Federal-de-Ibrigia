@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Poder Legislativo · Unión Federal de Ibrigia</title>
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+  <div class="photo" id="photo"></div>
+  <div class="bg"></div>
+
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="seal" aria-hidden="true"></div>
+        <div>
+          <h1 class="pageTitle">Poder Legislativo</h1>
+          <p class="pageSub">Leyes y acuerdos para mejorar la relación.</p>
+        </div>
+      </div>
+      <nav class="nav">
+        <a class="pill" href="index.html">Inicio</a>
+        <a class="pill" href="judicial.html">Judicial</a>
+        <a class="pill" href="legislativo.html">Legislativo</a>
+        <a class="pill" href="ejecutivo.html">Ejecutivo</a>
+        <a class="pill" href="partidos.html">Partidos</a>
+      </nav>
+    </div>
+
+    <section class="card">
+      <h2>En construcción</h2>
+      <p class="muted">Te lo dejo como base profesional. Luego lo completamos con tus textos, reglas y fotos.</p>
+      <div class="smallNote">Siguiente: dime los nombres reales de los partidos y subimos sus fotos a <code>assets/img/partidos/</code>.</div>
+    </section>
+  </div>
+
+  <script src="assets/js/app-config.js"></script>
+  <script>
+    document.getElementById('photo').style.backgroundImage = `url('${window.IBRIGIA.heroImage}')`;
+  </script>
+</body>
+</html>
