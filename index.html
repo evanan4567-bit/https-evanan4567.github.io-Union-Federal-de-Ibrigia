@@ -4,18 +4,72 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Unión Federal de Ibrigia</title>
+  <style>
+    :root{--bg:#0b1220;--card:#111b2e;--txt:#e8eefc;--muted:#b7c3df;--acc:#4da3ff}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--txt)}
+    .container{max-width:980px;margin:0 auto;padding:26px}
+    .hero{padding:18px 18px;border:1px solid #223255;border-radius:16px;background:linear-gradient(135deg, rgba(77,163,255,.18), rgba(255,255,255,.02))}
+    .title{margin:0;font-size:28px}
+    .sub{margin:8px 0 0;color:var(--muted);line-height:1.35}
+    .nav{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 22px}
+    .nav a{color:var(--txt);text-decoration:none;padding:10px 12px;border:1px solid #223255;border-radius:10px;background:rgba(255,255,255,.03)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:14px}
+    .card{padding:14px;border:1px solid #223255;border-radius:14px;background:var(--card)}
+    .card h3{margin:0 0 8px}
+    .small{color:var(--muted);font-size:14px;line-height:1.35}
+    .btn{display:inline-block;margin-top:10px;color:#001427;background:var(--acc);padding:10px 12px;border-radius:10px;text-decoration:none;font-weight:700}
+    .footer{margin-top:18px;color:var(--muted);font-size:13px}
+    .pill{display:inline-block;padding:4px 10px;border:1px solid #223255;border-radius:999px;color:var(--muted);font-size:12px;margin-top:10px}
+  </style>
 </head>
 <body>
-  <h1>Unión Federal de Ibrigia</h1>
-  <p>El país que simboliza nuestra relación.</p>
+  <div class="container">
+    <div class="hero">
+      <h1 class="title">Unión Federal de Ibrigia</h1>
+      <p class="sub">
+        Un país simbólico de dos partidos y tres poderes: para cuidarnos, mejorar y gobernar el mes con responsabilidad.
+      </p>
+      <div class="pill">Estado: en construcción</div>
 
-  <h2>Los tres poderes</h2>
-  <ul>
-    <li><a href="judicial.html">Poder Judicial (SOTPK)</a></li>
-    <li><a href="legislativo.html">Poder Legislativo (Leyes)</a></li>
-    <li><a href="ejecutivo.html">Poder Ejecutivo (Presidencia mensual)</a></li>
-  </ul>
+      <div class="nav">
+        <a href="index.html">Inicio</a>
+        <a href="judicial.html">Judicial</a>
+        <a href="legislativo.html">Legislativo</a>
+        <a href="ejecutivo.html">Ejecutivo</a>
+        <a href="partidos.html">Partidos</a>
+      </div>
+    </div>
 
-  <p><a href="partidos.html">Partidos</a></p>
+    <div class="grid">
+      <div class="card">
+        <h3>Poder Judicial</h3>
+        <p class="small">Aquí van los “SOTPK”: lo que daña la relación, su impacto, y la reparación/sentencia.</p>
+        <a class="btn" href="judicial.html">Entrar</a>
+      </div>
+
+      <div class="card">
+        <h3>Poder Legislativo</h3>
+        <p class="small">Leyes de cada partido para mejorar: propuestas, debate, acuerdos y promulgación.</p>
+        <a class="btn" href="legislativo.html">Entrar</a>
+      </div>
+
+      <div class="card">
+        <h3>Poder Ejecutivo</h3>
+        <p class="small">Presidencia rotativa mensual: prioridades, agenda del mes y rendición de cuentas.</p>
+        <a class="btn" href="ejecutivo.html">Entrar</a>
+      </div>
+
+      <div class="card">
+        <h3>Partidos</h3>
+        <p class="small">Dos partidos que representan sus formas de amar/mejorar; con principios y compromisos.</p>
+        <a class="btn" href="partidos.html">Entrar</a>
+      </div>
+    </div>
+
+    <div class="footer">
+      Consejo: si alguna página no abre, revisa que el nombre del archivo y el link coincidan exactamente (minúsculas). 
+    </div>
+  </div>
 </body>
 </html>
