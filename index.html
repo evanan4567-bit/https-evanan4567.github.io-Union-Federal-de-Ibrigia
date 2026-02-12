@@ -7,96 +7,140 @@
   <link rel="stylesheet" href="assets/css/app.css">
 </head>
 <body>
-  <div class="photo" id="photo"></div>
-  <div class="bg"></div>
-
-  <div class="wrap">
-    <div class="topbar">
-      <div class="brand">
-        <div class="seal" aria-hidden="true"></div>
-        <div>
-          <h1 id="siteName">Unión Federal de Ibrigia</h1>
-          <p>Estado simbólico de dos partidos y tres poderes</p>
+  <div class="photo" id="photo">
+    <div class="bgdiv"></div>
+    <div class="wrap">
+      <!-- Barra superior -->
+      <div class="topbar">
+        <div class="brand">
+          <div class="seal" aria-hidden="true"></div>
+          <div>
+            <h1 id="siteName">Unión Federal de Ibrigia</h1>
+            <p>
+              Estado simbólico donde dos partidos y tres poderes cuidan una sola relación.
+            </p>
+          </div>
         </div>
+        <nav class="nav">
+          <a class="pill" href="judicial.html">Judicial</a>
+          <a class="pill" href="legislativo.html">Legislativo</a>
+          <a class="pill" href="ejecutivo.html">Ejecutivo</a>
+          <a class="pill" href="partidos.html">Partidos</a>
+        </nav>
       </div>
 
-      <nav class="nav">
-        <a class="pill" href="judicial.html">Judicial</a>
-        <a class="pill" href="legislativo.html">Legislativo</a>
-        <a class="pill" href="ejecutivo.html">Ejecutivo</a>
-        <a class="pill" href="partidos.html">Partidos</a>
-      </nav>
-    </div>
-
-    <section class="hero">
-      <h2 class="heroTitle">Sesión del Pleno</h2>
-      <p class="heroSub" id="heroSub">Selecciona un partido para definir el color del gobierno y mostrar su panel.</p>
-
-      <div class="session">
-        <span class="statusDot" aria-hidden="true"></span>
-        <span>Sesión: en curso</span>
-        <span class="pill" id="todayPill" style="pointer-events:none"></span>
-      </div>
-    </section>
-
-    <div class="grid">
-      <section class="card">
-        <h2>Partidos (2)</h2>
-        <div class="twoCols">
-          <button class="partyBtn" id="p1Btn" type="button">
-            <div class="partyAvatar" aria-hidden="true"><img id="p1Img" alt="" /></div>
-            <div>
-              <div class="partyName" id="p1Name">Nombre 1</div>
-              <div class="partyMeta" id="p1Meta">Enfoque: estabilidad, calma, acuerdos.</div>
-            </div>
-          </button>
-
-          <button class="partyBtn" id="p2Btn" type="button">
-            <div class="partyAvatar" aria-hidden="true"><img id="p2Img" alt="" /></div>
-            <div>
-              <div class="partyName" id="p2Name">Nombre 2</div>
-              <div class="partyMeta" id="p2Meta">Enfoque: creatividad, detalles, cariño.</div>
-            </div>
-          </button>
-        </div>
-
-        <div class="kpis">
-          <div class="kpi">
-            <div class="n" id="kpiPresi">—</div>
-            <div class="l">Presidencia del mes</div>
-          </div>
-          <div class="kpi">
-            <div class="n" id="kpiPrior">0/3</div>
-            <div class="l">Prioridades</div>
-          </div>
-          <div class="kpi">
-            <div class="n" id="kpiDecretos">0</div>
-            <div class="l">Decretos</div>
-          </div>
-        </div>
-
-        <div class="ctaRow">
-          <a class="btn primary" href="ejecutivo.html">Ir al Ejecutivo</a>
-          <a class="btn" href="legislativo.html">Ver leyes</a>
-          <a class="btn" href="judicial.html">Ver SOTPK</a>
-        </div>
-
-        <div class="smallNote">
-          La selección del partido se guarda en este navegador para que se sienta como app.
+      <!-- Hero principal -->
+      <section class="hero">
+        <h2 class="heroTitle">Pleno digital de Irigia</h2>
+        <p class="heroSub" id="heroSub">
+          Este congreso futurista es el tablero oficial de su relación: elige qué partido gobierna,
+          mira sus prioridades y decide juntos las leyes y reparaciones que mantienen todo en equilibrio.
+        </p>
+        <div class="session">
+          <span class="statusDot" aria-hidden="true"></span>
+          <span>Sesión en curso</span>
+          <span class="pill" id="todayPill" style="pointer-events:none;"></span>
         </div>
       </section>
 
-      <section class="card">
-        <h2>Panel rápido</h2>
-        <p class="muted" id="panelTxt">Aquí mostraremos el mensaje del gobierno según el partido seleccionado.</p>
+      <!-- Contenido principal -->
+      <section>
+        <div class="grid">
+          <!-- Card Partidos y resumen del gobierno -->
+          <section class="card">
+            <h2>Partidos de Ibrigia</h2>
+            <p class="muted">
+              Elige quién tiene la conducción simbólica del mes. El color del congreso,
+              los mensajes y los indicadores se adaptan al partido activo.
+            </p>
 
-        <div class="ctaRow">
-          <button class="btn" id="btnMessage" type="button">Cambiar mensaje</button>
-          <button class="btn" id="btnReset" type="button">Reset</button>
+            <div class="twoCols">
+              <!-- Partido Ivanista -->
+              <button class="partyBtn" id="p1Btn" type="button">
+                <div class="partyAvatar" aria-hidden="true">
+                  <img id="p1Img" alt="Escudo Partido Ivanista">
+                </div>
+                <div>
+                  <div class="partyName" id="p1Name">Partido Ivanista</div>
+                  <div class="partyMeta" id="p1Meta">
+                    Calma, organización y estabilidad emocional como base del gobierno.
+                  </div>
+                </div>
+              </button>
+
+              <!-- Partido Briggista -->
+              <button class="partyBtn" id="p2Btn" type="button">
+                <div class="partyAvatar" aria-hidden="true">
+                  <img id="p2Img" alt="Escudo Partido Briggista">
+                </div>
+                <div>
+                  <div class="partyName" id="p2Name">Partido Briggista</div>
+                  <div class="partyMeta" id="p2Meta">
+                    Creatividad, detalles y cariño intenso como motor de cada decisión.
+                  </div>
+                </div>
+              </button>
+            </div>
+
+            <div class="kpis">
+              <div class="kpi">
+                <div class="n" id="kpiPresi">–</div>
+                <div class="l">Presidencia activa</div>
+              </div>
+              <div class="kpi">
+                <div class="n" id="kpiPrior">0</div>
+                <div class="l">Prioridades del mes</div>
+              </div>
+              <div class="kpi">
+                <div class="n" id="kpiDecretos">0</div>
+                <div class="l">Decretos vigentes</div>
+              </div>
+            </div>
+
+            <div class="ctaRow">
+              <a class="btn primary" href="ejecutivo.html">Abrir Poder Ejecutivo</a>
+              <a class="btn" href="legislativo.html">Diseñar leyes</a>
+              <a class="btn" href="judicial.html">Revisar SOTPK</a>
+            </div>
+
+            <div class="smallNote">
+              La selección del partido se guarda en este navegador
+              para que el congreso se sienta como una app propia de ustedes.
+            </div>
+          </section>
+
+          <!-- Card Mensaje del gobierno -->
+          <section class="card">
+            <h2>Mensaje del gobierno</h2>
+            <p class="muted" id="panelTxt">
+              Aquí aparecerá el mensaje oficial del gobierno del mes.
+              Cuando cambies de partido, también puede cambiar el tono:
+              más orden Ivanista, más intensidad Briggista.
+            </p>
+            <div class="ctaRow">
+              <button class="btn" id="btnMessage" type="button">Editar mensaje</button>
+              <button class="btn" id="btnReset" type="button">Reset</button>
+            </div>
+
+            <div class="hr"></div>
+
+            <h3 class="muted">Cómo funciona este congreso</h3>
+            <p class="muted">
+              El Ejecutivo define prioridades, agenda y decretos de cariño.
+              El Legislativo redacta leyes de convivencia y acuerdos.
+              El Judicial registra los casos SOTPK y las reparaciones necesarias.
+            </p>
+            <p class="muted">
+              Todo vive en este panel: un solo lugar donde su relación se
+              trata como algo serio, pero lindo, futurista y totalmente suyo.
+            </p>
+
+            <div class="hr"></div>
+            <p class="muted">
+              Tip: si no ves algún cambio, recarga la página con Ctrl+F5.
+            </p>
+          </section>
         </div>
-
-        <div class="hr"></div>
-        <p class="muted">Atajo: si algo no se ve, recarga con Ctrl+F5.</p>
       </section>
     </div>
   </div>
